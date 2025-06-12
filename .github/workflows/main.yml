@@ -2,7 +2,7 @@ name: Build & Deploy Flexidev Test App
 on:
   push:
     branches:
-    - main
+    - mainv2
 jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
