@@ -39,6 +39,7 @@ jobs:
 
   deploy:
     runs-on: ubuntu-latest
+    needs: build
     env:
       IMAGE_TAG: ghcr.io/smam-tech/flexidev-portal:main
     steps:
