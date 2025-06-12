@@ -4,7 +4,7 @@ on:
     branches:
     - main
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
     env:
       IMAGE_TAG: ghcr.io/smam-tech/flexidev-portal:main
@@ -36,10 +36,16 @@ jobs:
         push: true
         tags: ${{ env.IMAGE_TAG }}
         github-token: ${{ secrets.GITHUB_TOKEN }}
+
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      IMAGE_TAG: ghcr.io/smam-tech/flexidev-portal:main
+    steps:
     - name: Deploy to Azure Web App using GHCR image
       uses: azure/webapps-deploy@v2
       with:
         app-name: 'smam-portal'
         slot-name: 'production'
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_fd43a82d0f534adc8bf7728052df05fa }}
-        images: ghcr.io/smam-tech/flexidev-portal:main
+        images: ${{ env.IMAGE_TAG }}
