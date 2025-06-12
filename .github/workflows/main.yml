@@ -8,9 +8,20 @@ jobs:
     runs-on: ubuntu-latest
     env:
       IMAGE_TAG: ghcr.io/smam-tech/flexidev-portal:main
+    permissions:
+      contents: read
+      packages: write
+      attestations: write
+      id-token: write
     steps:
     - name: Checkout code
-      uses: actions/checkout@v3
+      uses: actions/checkout@v4
+    - name: Log in to the Container registry
+      uses: docker/login-action@65b78e6e13532edd9afa3aa52ac7964289d1a9c1
+      with:
+        registry: ghcr.io
+        username: ${{ github.actor }}
+        password: ${{ secrets.GITHUB_TOKEN }}
     - name: Build and push Docker images
       uses: docker/build-push-action@v6.18.0
       with:
