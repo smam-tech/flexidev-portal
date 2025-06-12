@@ -35,12 +35,12 @@ jobs:
     env:
       IMAGE_TAG: ghcr.io/smam-tech/flexidev-portal:main
       APP_NAME: 'smam-portal'
-      slot-name: 'production'
+      SLOT_NAME: 'production'
     steps:
     - name: Deploy to Azure Web App using GHCR image
       uses: azure/webapps-deploy@v2
       with:
-        app-name: ${{ env.IMAGE_TAG }}
-        slot-name: ${{ env.IMAGE_TAG }}
+        app-name: ${{ env.APP_NAME }}
+        slot-name: ${{ env.SLOT_NAME }}
         publish-profile: ${{ secrets.AzureAppService_PublishProfile_fd43a82d0f534adc8bf7728052df05fa }}
         images: ${{ env.IMAGE_TAG }}
