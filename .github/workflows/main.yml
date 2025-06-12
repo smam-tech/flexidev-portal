@@ -16,3 +16,4 @@ jobs:
       with:
         push: true
         tags: ${{ env.IMAGE_TAG }}
+        github-token: ${{ secrets.GITHUB_TOKEN }}
