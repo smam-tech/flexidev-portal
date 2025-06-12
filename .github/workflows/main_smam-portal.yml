@@ -6,8 +6,9 @@ name: Build and deploy container app to Azure Web App - smam-portal
 on:
   push:
     branches:
-      - main
+    - mainv2
   workflow_dispatch:
+
 
 jobs:
   build:
