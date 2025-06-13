@@ -7,7 +7,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      IMAGE_TAG: ghcr.io/smam-tech/flexidev-portal:main
+      IMAGE_TAG: ghcr.io/smam-tech/flexidev-portal:${{ github.sha }}
     permissions:
       contents: read
       packages: write
@@ -33,7 +33,7 @@ jobs:
     runs-on: ubuntu-latest
     needs: build
     env:
-      IMAGE_TAG: ghcr.io/smam-tech/flexidev-portal:latest
+      IMAGE_TAG: ghcr.io/smam-tech/flexidev-portal:${{ github.sha }}
       APP_NAME: 'smam-portal'
       SLOT_NAME: 'production'
     steps:
